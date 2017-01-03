@@ -9,6 +9,7 @@ const router = new Router()
 
 const list = (req, res) => {
   Comics.find()
+    .sort({num: 1})
     .limit(5)
     .exec()
     .then(comics => res.json(comics))
