@@ -2,34 +2,35 @@
 import React, {Component} from 'react'
 import {observer, inject} from 'mobx-react'
 
-import * as actions from '../../actions'
-import BoardList from './presenter'
+// import * as actions from '../../actions'
+import Comics from './presenter'
 
 
-@inject('entityStore')
+@inject('comicsStore')
 @observer
-class BoardListContainer extends Component {
+class ComicsContainer extends Component {
   componentDidMount() {
-    actions.fetchEntity()
+    this.props.comicsStore.fetchComics()
   }
   render() {
-    const {entityStore} = this.props
+    const {comicsStore} = this.props
 
-    const boardsAll = entityStore.getEntitiesByKey('boards')
-    const boardsIds = Object.keys(boardsAll)
-    const boards = []
+    const comicsAll = comicsStore.entities.toJS()
+    const comicsIds = Object.keys(comicsAll)
+    const comics = []
 
-    boardsIds.forEach((id) => {
-      boards.push(boardsAll[id])
+    comicsIds.forEach((id) => {
+      comics.push(comicsAll[id])
     })
 
     return (
-      <BoardList
-        boards={boards}
+      <Comics
+        num={0}
+        comics={comics}
       />
     )
   }
 }
 
 
-export default BoardListContainer
+export default ComicsContainer
