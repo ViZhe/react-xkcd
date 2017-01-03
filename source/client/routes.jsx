@@ -3,8 +3,9 @@ import React from 'react'
 import {Route, IndexRoute} from 'react-router'
 
 import App from './components/App'
-import BoardIndex from './components/BoardIndex'
-import BoardList from './components/BoardList'
+import Comics from './components/Comics'
+// import BoardIndex from './components/BoardIndex'
+// import BoardList from './components/BoardList'
 import NotFound from './components/NotFound'
 
 
@@ -20,11 +21,12 @@ function requireAsync(name) {
 const routes = (
   <div>
     <Route path='/' component={App} >
-      <IndexRoute component={BoardList} />
+      <IndexRoute component={Comics} />
+      {/* <IndexRoute component={BoardList} />
       <Route path='b' >
         <IndexRoute component={BoardList} />
         <Route path=':id' component={BoardIndex} />
-      </Route>
+      </Route> */}
     </Route>
     <Route path='/' component={App} >
       <Route path='/timer' getComponent={requireAsync('Timer')} />
